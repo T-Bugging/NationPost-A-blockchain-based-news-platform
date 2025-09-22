@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auth Page</title>
+  <style>
+    body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .container { border: 1px solid #ccc; padding: 20px; border-radius: 8px; width: 300px; }
+    input { display: block; width: 100%; margin: 10px 0; padding: 8px; }
+    button { padding: 10px; width: 100%; margin-top: 10px; cursor: pointer; }
+    #toggle { background-color: #eee; border: none; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <button id="toggle">Switch to Signup</button>
+    <form id="authForm">
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <input type="email" name="email" placeholder="Email (signup only)" style="display:none;">
+      <button type="submit" id="submitBtn">Login</button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('authForm');
+    const toggleBtn = document.getElementById('toggle');
+    const emailInput = form.email;
+    const submitBtn = document.getElementById('submitBtn');
+
+    let isSignup = false;
+
+    // Toggle between login and signup
+    toggleBtn.addEventListener('click', () => {
+      isSignup = !isSignup;
+      emailInput.style.display = isSignup ? 'block' : 'none';
+      submitBtn.textContent = isSignup ? 'Signup' : 'Login';
+      toggleBtn.textContent = isSignup ? 'Switch to Login' : 'Switch to Signup';
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const data = {
+        action: isSignup ? 'signup' : 'login',
+        username: form.username.value,
+        password: form.password.value
+      };
+
+      if(isSignup) {
+        data.email = form.email.value; // optional for now
+      }
+
+      try {
+        const response = await fetch('http://127.0.0.1:5000/auth', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+        alert(result.message);
+      } catch (err) {
+        alert('Request failed. Check Flask server and CORS.');
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>
