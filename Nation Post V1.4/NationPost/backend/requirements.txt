@@ -1,0 +1,9 @@
+flask
+flask-cors
+pymongo
+bcrypt
+dnspython
+uuid
+requests
+google-generativeai
+PyJWT
