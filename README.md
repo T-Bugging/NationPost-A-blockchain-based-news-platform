@@ -107,6 +107,8 @@ This project demonstrates:
 - Full-stack system design with Flask and React  
 
 ---
+## **Research Paper** 
+**Link** - https://ijsrem.com/download/blockchain-based-news-platform-with-integrated-agentic-ai-for-news-verification/
 
 ## **Developer**
 
