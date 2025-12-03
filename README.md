@@ -112,7 +112,12 @@ This project demonstrates:
 
 ## **Developer**
 
-**Uday (T-Bugging)**  
+**Uday Pandey(T-Bugging)**  
+**Sanskar Pandey** 
+**Aniket Thakur** 
+**Yash Kanhere** 
+**Nishant Parashar** 
+**Vrundita Jamkar** 
 GitHub: https://github.com/T-Bugging
 
 ---
